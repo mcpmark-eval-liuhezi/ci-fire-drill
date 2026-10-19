@@ -1,0 +1,24 @@
+name: Fire Drill
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  marker:
+    name: Print readiness marker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Emit marker line
+        run: echo "FIRE-DRILL-READY-7C4D"
+
+  stuck-run:
+    name: Simulated stuck job (ten minutes)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sleep for a full ten minutes
+        run: |
+          echo "Simulating a stuck CI run - sleeping for 10 minutes..."
+          sleep 600
+          echo "Sleep finished."
