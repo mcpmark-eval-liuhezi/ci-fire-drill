@@ -1,4 +1,4 @@
-name: Fire Drill
+name: CI Fire Drill
 
 on:
   push:
@@ -6,19 +6,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  marker:
-    name: Print readiness marker
+  drill:
+    name: Failing drill check
     runs-on: ubuntu-latest
     steps:
-      - name: Emit marker line
-        run: echo "FIRE-DRILL-READY-7C4D"
-
-  stuck-run:
-    name: Simulated stuck job (ten minutes)
-    runs-on: ubuntu-latest
-    steps:
-      - name: Sleep for a full ten minutes
+      - name: Fail the drill
         run: |
-          echo "Simulating a stuck CI run - sleeping for 10 minutes..."
-          sleep 600
-          echo "Sleep finished."
+          echo "CI Fire Drill failure: drill code ERR-9042"
+          exit 1
